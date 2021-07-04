@@ -1,3 +1,4 @@
 catch_exchange_scrapper.py
 data.json
 log_file
+__pycache__
