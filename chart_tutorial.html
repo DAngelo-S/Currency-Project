@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<!-- where the data gets loaded --!>
+		<script type="text/javascript">
+			var data = [
+				["Car", "Number"],
+				["Audi", 3],
+				["BMW", 2],
+				["Mercedes", 1],
+				["Opel", 3],
+				["Volkswagen", 4]
+			];
+
+			var chartType = "ColumnChart";
+			var containerId = "chart1";
+			var options = {
+				"title": "Cars in my road",
+				"subtitle": "in numbers",
+				"width": '90%',
+				"height": '100%'
+			};
+		</script>
+		
+		<!-- load the AJAX API --!>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+		</script>
+
+		<!-- where we create and display a chart --!>
+		<script type="text/javascript">
+			// Load the Visualization API and the corechart package
+			google.charts.load('current', {'packages':['corechart']});
+
+			// Set a callback for when the API is loaded
+			google.charts.setOnLoadCallback(drawChart);
+
+			// This is the callback function which actually draws the chart
+			function drawChart(){
+				google.visualization.drawChart({
+					"containerId": containerId,
+					"dataTable": data,
+					"chartType": chartType,
+					"options": options
+				});
+			}
+		</script>
+	</head>
+
+	<body>
+		<!-- the div where a chart will be displayed --!>
+		<div id="chart1" style='height: 100vh; width: 100vw'>
+		</div>
+	</body>
+</html>
