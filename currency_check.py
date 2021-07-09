@@ -45,7 +45,14 @@ def plot_data(period):
     plt.ylabel('Balance')
     plt.legend(loc='center', bbox_to_anchor=(0.5,-0.6), ncol=10)
     plt.title(f'Currency value variation in the last {period} days')
-   
+
+    if period >= 7:
+        every_nth = int(5)
+        ax = plt.subplot()
+        plt.axes().xaxis.set_major_locator(plt.MaxNLocator(every_nth))
+
+    plt.rcParams['figure.figsize'] = [15, 5]
+
     plt.savefig(f'balance_{period}.png', bbox_inches='tight')
 
     plt.close()
@@ -55,7 +62,7 @@ def try_plot():
 
     size = len(data['values']['USD'])
 
-    periods = [2, 3, 7, 15, 30, 90, 180, 365, 730, 1095, 1460, 1825, 3650]
+    periods = [2, 2, 3, 7, 7, 15, 30, 90, 180, 365, 730, 1095, 1460, 1825, 3650]
 
     for p in periods:
         if size >= p:
@@ -66,14 +73,14 @@ def try_plot():
     if size >= periods[0]:
         print("New data available!")
 
-
-while True:
-    if ces.updated():
-        print("UPDATED!")
-        try_plot()
-        os.system('git add *.png')
-        os.system('git commit -m "updated charts"')
-        os.system('git push')
-    else:
-        print(f"Dormindo desde: {datetime.now()}")
-        time.sleep(1*60*60)
+def run():
+    while True:
+        if ces.updated():
+            print("UPDATED!")
+            try_plot()
+            os.system('git add *.png')
+            os.system('git commit -m "updated charts"')
+            os.system('git push')
+        else:
+            print(f"Dormindo desde: {datetime.now()}")
+            time.sleep(1*60*60)
