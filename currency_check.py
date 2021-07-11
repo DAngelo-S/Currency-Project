@@ -21,6 +21,13 @@ def plot_data(period):
     
     data = ces.read_data()
 
+    plt.rcParams['figure.figsize'] = [15, 5]
+
+    if period >= 7:
+        every_nth = int(5)
+        plt.axes().xaxis.set_major_locator(plt.MaxNLocator(every_nth))
+
+
     timeline = data["timeline"][-period:]
 
     timeline = list(map(lambda t: datetime.utcfromtimestamp(t).strftime('%d-%m-%Y'), timeline))
@@ -46,13 +53,6 @@ def plot_data(period):
     plt.legend(loc='center', bbox_to_anchor=(0.5,-0.6), ncol=10)
     plt.title(f'Currency value variation in the last {period} days')
 
-    if period >= 7:
-        every_nth = int(5)
-        ax = plt.subplot()
-        plt.axes().xaxis.set_major_locator(plt.MaxNLocator(every_nth))
-
-    plt.rcParams['figure.figsize'] = [15, 5]
-
     plt.savefig(f'balance_{period}.png', bbox_inches='tight')
 
     plt.close()
@@ -62,7 +62,7 @@ def try_plot():
 
     size = len(data['values']['USD'])
 
-    periods = [2, 2, 3, 7, 7, 15, 30, 90, 180, 365, 730, 1095, 1460, 1825, 3650]
+    periods = [2, 3, 7, 15, 30, 90, 180, 365, 730, 1095, 1460, 1825, 3650]
 
     for p in periods:
         if size >= p:
