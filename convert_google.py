@@ -1,4 +1,4 @@
-import catch_exchange_scrapper as ces
+import catch_exchange as ces
 import json
 
 def convert_to_DataTable():
