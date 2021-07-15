@@ -34,3 +34,6 @@ def convert_to_DataTable():
         json.dump(new_format, writer)
 
     return new_format
+
+if __name__ == "__main__":
+    convert_to_DataTable()

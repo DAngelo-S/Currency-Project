@@ -84,3 +84,6 @@ def run():
         else:
             print(f"Dormindo desde: {datetime.now()}")
             time.sleep(1*60*60)
+
+if __name__ == "__main__":
+    run()
