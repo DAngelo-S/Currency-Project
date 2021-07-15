@@ -74,21 +74,44 @@ def verify_if_it_s_same_countries(old_ones, new_ones):
 
 def updated():
     data = read_data()
-    timeline = data["timeline"]
+
+    try:
+        timeline = data["timeline"]
+    except KeyError as ex:
+        print(erro.writeError("KeyError (in old data)", "updated", "catch_exchange", f"one of: {list(data.keys())}", ex))
+        exit(0)
+    except BaseException as ex:
+        print(erro.writeError("UnknownError (in old data)", "updated" , "catch_exchange", "", ex))
+        exit(0)
     
     data = catch_exchange()
-    time_unix = data['time_last_update_unix']
+
+    try:
+        time_unix = data['time_last_update_unix']
+    except KeyError as ex:
+        print(erro.writeError("KeyError (in new data)", "updated", "catch_exchange", f"one of: {list(data.keys())}", ex))
+        exit(0)
+    except BaseException as ex:
+        print(erro.writeError("UnknownError (in new data)", "updated", "catch_exchange", "", ex))
+        exit(0)
     
     if time_unix in timeline:
         return False
     
-    #insert_data()
+    insert_data()
     return True
 
 def insert_data():
     data = catch_exchange()
-    time_unix, currency = data['time_last_update_unix'], data['rates']
-    #print(datetime.utcfromtimestamp(time_unix).strftime('%Y-%m-%d %H:%M:%S'))
+
+    try:
+        time_unix, currency = data['time_last_update_unix'], data['rates']
+    except KeyError as ex:
+        print(erro.writeError("KeyError (in new data)", "insert_data", "catch_exchange", f"one of: {list(data.keys())}", ex))
+        exit(0)
+    except BaseException as ex:
+        print(erro.writeError("UnknownError (in new data)", "insert_data", "catch_exchange", "", ex))
+        exit(0)
     
     old_data = read_data()
     
@@ -140,10 +163,11 @@ def dell_last_data():
     return data
 
 if __name__ == "__main__":
-    catch_exchange()
+    #catch_exchange()
     #read_data()
     #print(verify_if_it_s_same_countries(["USD", "BRL"], ["BRL", "ASL"])) False
     #print(verify_if_it_s_same_countries(["USD", "BRL"], ["BRL", "USD"])) True
     #print(verify_if_it_s_same_countries(["USD", "BRL"], ["BRL", "ASL", "USD"])) True
     #print(verify_if_it_s_same_countries(["USD", "BRL", "BIRL"], ["BRL", "ASL", "ABA", "USD", "DIN"]))
     #updated()
+    #insert_data()
