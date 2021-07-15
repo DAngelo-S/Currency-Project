@@ -1,17 +1,10 @@
 # coding: utf-8
 
 from datetime import datetime
-import time
+from time import sleep
 import matplotlib.pyplot as plt
 import os
-import catch_exchange_scrapper as ces
-
-
-# ---------------------	ATTENTION !!!!! -----------------
-# Removing the comment from the next line will erase perma-
-# nentily all our data!! Be carefull.
-
-#clean_data_json()
+import catch_exchange as ces
 
 # The following 2 functions aren't tested because there aren't
 # enought data to do so.
@@ -83,7 +76,7 @@ def run():
             os.system('git push')
         else:
             print(f"Dormindo desde: {datetime.now()}")
-            time.sleep(1*60*60)
+            sleep(1*60*60)
 
 if __name__ == "__main__":
     run()

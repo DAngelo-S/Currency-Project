@@ -163,6 +163,7 @@ def dell_last_data():
     return data
 
 if __name__ == "__main__":
+    print("TEST")
     #catch_exchange()
     #read_data()
     #print(verify_if_it_s_same_countries(["USD", "BRL"], ["BRL", "ASL"])) False
@@ -171,3 +172,9 @@ if __name__ == "__main__":
     #print(verify_if_it_s_same_countries(["USD", "BRL", "BIRL"], ["BRL", "ASL", "ABA", "USD", "DIN"]))
     #updated()
     #insert_data()
+
+    # ---------------------	ATTENTION !!!!! -----------------
+    # Removing the comment from the next line will erase perma-
+    # nentily all our data!! Be carefull.
+
+    #clean_data_json()
