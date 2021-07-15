@@ -61,10 +61,16 @@ def read_data():
     return data
 
 def verify_if_it_s_same_countries(old_ones, new_ones):
-    if old_ones != new_ones:
-        erro.add_log("Not the same countries - verify_if_it_s_same_countries",
-                f"{old_ones}",
-                f"{new_ones}")
+    try:
+        if old_ones != new_ones:
+            raise erro.NotSameCountries(f"{old_ones}", f"{new_ones}")
+        return True
+    except erro.NotSameCountries as ex:
+        print(ex.message)
+        exit(0)
+    except BaseException as ex:
+        print(erro.writeError("UnknownError", "Request Exchange API - catch_exchange", "", ex))
+        exit(0)
 
 def updated():
     data = read_data()

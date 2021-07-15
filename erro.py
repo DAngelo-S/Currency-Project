@@ -15,6 +15,12 @@ class TimeRequestError(Error):
         add_log(message)
         self.message = message
 
+class NotSameCountries:
+    def __init__(self, exp, rec):
+        message = error_msg("NotSameCountries: Verify if it's same countries - catch_exchange", sexp, rec)
+        add_log(message)
+        self.message = message
+
 def writeError(errorType, local, exp, rec):
         message = error_msg(str(errorType) + ": " + str(local), str(exp), str(rec))
         add_log(message)
