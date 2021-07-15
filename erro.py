@@ -5,18 +5,18 @@ class Error(Exception):
 
 class RequestError(Error):
     def __init__(self, status):
-        message = error_msg("Request Exchange API - catch_exchange", 200, status)
+        message = error_msg("RequestError: Request Exchange API - catch_exchange", 200, status)
         add_log(message)
         self.message = message
 
 class TimeRequestError(Error):
     def __init__(self, tries):
-        message = error_msg("Request Exchange API - catch_exchange", "", "Exceeded the limit of tries ({})".format(tries))
+        message = error_msg("TimeRequestError: Request Exchange API - catch_exchange", "", "Exceeded the limit of tries ({})".format(tries))
         add_log(message)
         self.message = message
 
-def UnknownError(local, ex):
-        message = error_msg(local, "", ex)
+def writeError(errorType, local, exp, rec):
+        message = error_msg(str(errorType) + ": " + str(local), str(exp), str(rec))
         add_log(message)
         return message
 

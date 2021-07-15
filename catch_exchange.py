@@ -12,7 +12,7 @@ def catch_exchange():
     limit = 10
     while True:
         try:
-            exchange_url = "https://api.exchangerate-api.com/v6/latest/"
+            exchange_url = "https://api.exchangerate-api.com/v6/latest"
             req = requests.get(exchange_url)
 
             if req.status_code != 200:
@@ -32,14 +32,29 @@ def catch_exchange():
                 print("Try again in a few hours or check the url!\n")
                 exit(0)
         except BaseException as ex:
-            print(erro.UnknownError("Request Exchange API - catch_exchange", ex))
+            print(erro.writeError("UnknownError", "Request Exchange API - catch_exchange", "", ex))
             exit(0)
 
 
 def read_data():
-    f = open('dataa.json')
-    
-    data = json.load(f)
+    try:
+        arq = 'data.json'
+        f = open(arq)
+    except FileNotFoundError as ex:
+        print(erro.writeError("FileNotFoundError", "Read Data - catch_exchange", f"Read {arq}", "File not found"))
+        exit(0);
+    except BaseException as ex:
+        print(erro.writeError("UnknownError", "Request Exchange API - catch_exchange", "", ex))
+        exit(0)
+        
+    try:
+        data = json.load(f)
+    except json.decoder.JSONDecodeError as ex:
+        print(erro.writeError("JSONDecodeError", "Read Data - catch_exchange", "Convert json data to dict", f"Not json. File: {arq}"))
+        exit(0);
+    except BaseException as ex:
+        print(erro.writeError("UnknownError", "Request Exchange API - catch_exchange", "", ex))
+        exit(0)
     
     f.close()
     
@@ -117,4 +132,5 @@ def dell_last_data():
     return data
 
 if __name__ == "__main__":
-    catch_exchange()
+    #catch_exchange()
+    read_data()
