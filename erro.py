@@ -4,25 +4,25 @@ class Error(Exception):
     pass
 
 class RequestError(Error):
-    def __init__(self, status):
-        message = error_msg("RequestError: Request Exchange API - catch_exchange", 200, status)
+    def __init__(self, func, module, status):
+        message = error_msg(f"RequestError: {func} - {module}", 200, status)
         add_log(message)
         self.message = message
 
 class TimeRequestError(Error):
-    def __init__(self, tries):
-        message = error_msg("TimeRequestError: Request Exchange API - catch_exchange", "", "Exceeded the limit of tries ({})".format(tries))
+    def __init__(self, func, module, tries):
+        message = error_msg(f"TimeRequestError: {func} - {module}", "", "Exceeded the limit of tries ({})".format(tries))
         add_log(message)
         self.message = message
 
-class NotSameCountries:
-    def __init__(self, exp, rec):
-        message = error_msg("NotSameCountries: Verify if it's same countries - catch_exchange", sexp, rec)
+class NotSubset(Error):
+    def __init__(self, func, module, exp, rec):
+        message = error_msg(f"NotSubset: {func} - {module}", exp, rec)
         add_log(message)
         self.message = message
 
-def writeError(errorType, local, exp, rec):
-        message = error_msg(str(errorType) + ": " + str(local), str(exp), str(rec))
+def writeError(errorType, func, module, exp, rec):
+        message = error_msg(str(errorType) + ": " + str(func) + " - " + str(module), exp, rec)
         add_log(message)
         return message
 

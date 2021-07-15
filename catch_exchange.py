@@ -16,7 +16,7 @@ def catch_exchange():
             req = requests.get(exchange_url)
 
             if req.status_code != 200:
-                raise erro.RequestError(str(req.status_code))
+                raise erro.RequestError("catch_exchange", "catch_exchange", str(req.status_code))
 
             return req.json()
         except erro.RequestError as ex:
@@ -24,7 +24,7 @@ def catch_exchange():
             try:
                 tries = tries + 1
                 if tries >= limit:
-                    raise erro.TimeRequestError(tries)
+                    raise erro.TimeRequestError("catch_exchange", "catch_exchange", tries)
                 print("New try in {} seconds\n".format(sec * (2 ** (tries-1))))
                 sleep(sec * (2 ** tries))
             except erro.TimeRequestError as ex:
@@ -32,7 +32,7 @@ def catch_exchange():
                 print("Try again in a few hours or check the url!\n")
                 exit(0)
         except BaseException as ex:
-            print(erro.writeError("UnknownError", "Request Exchange API - catch_exchange", "", ex))
+            print(erro.writeError("UnknownError", "catch_exchange", "catch_exchange", "", ex))
             exit(0)
 
 
@@ -41,19 +41,19 @@ def read_data():
         arq = 'data.json'
         f = open(arq)
     except FileNotFoundError as ex:
-        print(erro.writeError("FileNotFoundError", "Read Data - catch_exchange", f"Read {arq}", "File not found"))
+        print(erro.writeError("FileNotFoundError", "read_data",  "catch_exchange", f"Read {arq}", "File not found"))
         exit(0);
     except BaseException as ex:
-        print(erro.writeError("UnknownError", "Request Exchange API - catch_exchange", "", ex))
+        print(erro.writeError("UnknownError", "read_data", "catch_exchange", "", ex))
         exit(0)
         
     try:
         data = json.load(f)
     except json.decoder.JSONDecodeError as ex:
-        print(erro.writeError("JSONDecodeError", "Read Data - catch_exchange", "Convert json data to dict", f"Not json. File: {arq}"))
+        print(erro.writeError("JSONDecodeError", "read_data", "catch_exchange", "Convert json data to dict", f"Not json. File: {arq}"))
         exit(0);
     except BaseException as ex:
-        print(erro.writeError("UnknownError", "Request Exchange API - catch_exchange", "", ex))
+        print(erro.writeError("UnknownError", "read_data", "catch_exchange", "", ex))
         exit(0)
     
     f.close()
@@ -62,10 +62,10 @@ def read_data():
 
 def verify_if_it_s_same_countries(old_ones, new_ones):
     try:
-        if old_ones != new_ones:
-            raise erro.NotSameCountries(f"{old_ones}", f"{new_ones}")
+        if not (set(old_ones).issubset(set(new_ones))):
+            raise erro.NotSubset("verify_if_it_s_same_countries", "catch_exchange", f"{old_ones}", f"{new_ones}")
         return True
-    except erro.NotSameCountries as ex:
+    except erro.NotSubset as ex:
         print(ex.message)
         exit(0)
     except BaseException as ex:
@@ -82,7 +82,7 @@ def updated():
     if time_unix in timeline:
         return False
     
-    insert_data()
+    #insert_data()
     return True
 
 def insert_data():
@@ -94,10 +94,12 @@ def insert_data():
     
     new_data = old_data
     new_data["timeline"].append(time_unix)
+
+    my_countries = list(old_data["values"].keys())
     
-    verify_if_it_s_same_countries(list(old_data["values"].keys()), list(currency.keys()))
+    verify_if_it_s_same_countries(my_countries, list(currency.keys()))
     
-    for country in currency:
+    for country in my_countries:
         new_data["values"][country].append(round(currency['USD']/currency[country], 3))
     
     
@@ -138,5 +140,10 @@ def dell_last_data():
     return data
 
 if __name__ == "__main__":
-    #catch_exchange()
-    read_data()
+    catch_exchange()
+    #read_data()
+    #print(verify_if_it_s_same_countries(["USD", "BRL"], ["BRL", "ASL"])) False
+    #print(verify_if_it_s_same_countries(["USD", "BRL"], ["BRL", "USD"])) True
+    #print(verify_if_it_s_same_countries(["USD", "BRL"], ["BRL", "ASL", "USD"])) True
+    #print(verify_if_it_s_same_countries(["USD", "BRL", "BIRL"], ["BRL", "ASL", "ABA", "USD", "DIN"]))
+    #updated()
