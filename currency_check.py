@@ -4,7 +4,7 @@ from datetime import datetime
 from time import sleep
 import matplotlib.pyplot as plt
 import os
-import catch_exchange as ces
+import catch_exchange as cex
 
 # The following 2 functions aren't tested because there aren't
 # enought data to do so.
@@ -12,7 +12,7 @@ import catch_exchange as ces
 def plot_data(period):
     period = int(period)
     
-    data = ces.read_data()
+    data = cex.read_data()
 
     plt.rcParams['figure.figsize'] = [15, 5]
 
@@ -51,7 +51,7 @@ def plot_data(period):
     plt.close()
 
 def try_plot():
-    data = ces.read_data()
+    data = cex.read_data()
 
     size = len(data['values']['USD'])
 
@@ -68,7 +68,7 @@ def try_plot():
 
 def run():
     while True:
-        if ces.updated():
+        if cex.updated():
             print("UPDATED!")
             try_plot()
             os.system('git add *.png')
