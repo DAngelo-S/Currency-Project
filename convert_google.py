@@ -21,11 +21,13 @@ def convert_to_DataTable():
         cel = {}
         line = {'c': []}
         cel['v'] = f'Date({t*1000})'
-        cel['f'] = '%d/%m/%Y'
-        line['c'].append(cel['v'])
+        #cel['f'] = '%d/%m/%Y'
+        line['c'].append(cel)
         for c in data['values']:
             cel = {}
-            cel['v'] = data['values'][c][i]
+            if data['values'][c][i] == 0:
+                data['values'][c][i] = 0.001
+            cel['v'] = round(data['values'][c][i] / data['values'][c][0], 2)
             line['c'].append(cel)
         i = i + 1
         new_format['rows'].append(line)
