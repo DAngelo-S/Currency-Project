@@ -1,9 +1,13 @@
-from flask import Flask
+from flask import Flask, render_template
+from catch_exchange import read_data
+import json
+
 app = Flask(__name__)
 
 @app.route('/')
-def root():
-    return 'Hello'
+def chart_tutorial():
+    data = read_data("dataTable.json")
 
-if __name__ == "__main__":
-    app.run()
+    tempdata = json.dumps({'title':'Currency Variation', 'data':data})
+
+    return render_template('chart_tutorial.html', tempdata=tempdata)

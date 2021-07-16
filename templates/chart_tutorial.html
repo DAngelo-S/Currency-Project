@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		
+		<!-- where the data gets loaded -->
+		<script>
+
+			tdata = JSON.parse({{tempdata|tojson|safe}});
+			data = tdata.data;
+      		chartType = "LineChart";
+      		containerId = "chart_div";
+      		options = {'title':"Currency Variations", 'width':'90%', 'height':'100%'};
+      		console.log(tdata.data)
+
+		</script>
+		
+		<!-- load the AJAX API -->
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+		</script>
+
+		<!-- where we create and display a chart -->
+		<script>
+
+			// Load the Visualization API and the corechart package
+			google.charts.load('current', {'packages':['corechart']});
+
+			// Set a callback for when the API is loaded
+			google.charts.setOnLoadCallback(drawChart);
+
+			// This is the callback function which actually draws the chart
+			function drawChart(){
+				google.visualization.drawChart({
+					"containerId": containerId,
+					"dataTable": data,
+					"chartType": chartType,
+					"options": options
+				});
+			}
+
+		</script> 
+	</head>
+
+	<body>
+		<!-- the div where a chart will be displayed -->
+		<div id="chart_div" style='height: 100vh; width: 100vw'>
+		</div>
+	</body>
+</html>
