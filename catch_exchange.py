@@ -36,13 +36,12 @@ def catch_exchange():
             exit(0)
 
 
-def read_data():
+def read_data(arq = 'data.json'):
     try:
-        arq = 'data.json'
         f = open(arq)
     except FileNotFoundError as ex:
         print(erro.writeError("FileNotFoundError", "read_data",  "catch_exchange", f"Read {arq}", "File not found"))
-        exit(0);
+        exit(0)
     except BaseException as ex:
         print(erro.writeError("UnknownError", "read_data", "catch_exchange", "", ex))
         exit(0)
@@ -165,7 +164,7 @@ def dell_last_data():
 if __name__ == "__main__":
     print("TEST")
     #catch_exchange()
-    #read_data()
+    #print(read_data())
     #print(verify_if_it_s_same_countries(["USD", "BRL"], ["BRL", "ASL"])) False
     #print(verify_if_it_s_same_countries(["USD", "BRL"], ["BRL", "USD"])) True
     #print(verify_if_it_s_same_countries(["USD", "BRL"], ["BRL", "ASL", "USD"])) True
