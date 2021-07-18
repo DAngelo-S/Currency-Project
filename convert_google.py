@@ -1,7 +1,9 @@
 import catch_exchange as ces
 import json
 
-def convert_to_DataTable():
+def convert_to_DataTable(period):
+    period = int(period)
+
     data = ces.read_data()
     
     new_format = {
@@ -16,6 +18,10 @@ def convert_to_DataTable():
         new_format['cols'].append({'id': str(c), 'label': str(c), 'type': 'number'})
 
     # rows
+    for c in data['values']:
+        data['values'][c] = data['values'][c][-period:]
+    data['timeline'][-period:]
+
     i = 0
     for t in data['timeline']:
         cel = {}
@@ -31,9 +37,6 @@ def convert_to_DataTable():
             line['c'].append(cel)
         i = i + 1
         new_format['rows'].append(line)
-
-    with open('dataTable.json', 'w') as writer:
-        json.dump(new_format, writer)
 
     return new_format
 
