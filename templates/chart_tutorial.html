@@ -11,7 +11,6 @@
       		chartType = "LineChart";
       		containerId = "chart_div";
       		options = {'title':"Currency Variations", 'width':'90%', 'height':'100%'};
-      		console.log(tdata.data)
 
 		</script>
 		
@@ -30,20 +29,75 @@
 
 			// This is the callback function which actually draws the chart
 			function drawChart(){
-				google.visualization.drawChart({
-					"containerId": containerId,
-					"dataTable": data,
-					"chartType": chartType,
-					"options": options
-				});
+
+				dataTable = new google.visualization.DataTable(data);
+				
+				view = new google.visualization.DataView(dataTable);
+				view.hideColumns(dataTable.getColumnIndex('XDR'))
+
+				chart = new google.visualization.LineChart(document.getElementById(containerId));
+
+				chart.draw(view, options);
+
+				//google.visualization.drawChart({
+				//	"containerId": containerId,
+				//	"chartType": chartType,
+				//	"options": options,
+				//	"dataTable": data,
+				//	"view": view
+				//})
 			}
 
-		</script> 
+			function NorthAmericaCheckbox(element) {
+				america = ['USD', 'ANG', 'ARS', 'AWG', 'BBD', 'BMD', 'BOB', 'BRL', 
+				'BSD', 'BZD', 'CAD', 'CLP', 'COP', 'CRC', 'CUC', 'CUP', 'DOP', 'FKP', 
+				'GTQ', 'GYD', 'HNL', 'HTG', 'JMD', 'KYD', 'MXN', 'NIO', 'PAB', 'PEN', 
+				'PYG', 'SRD', 'TTD', 'UYU', 'VES', 'XCD'];
+				
+				if (element.checked) {
+					arr = [];
+					for (let i = 0; i < america.length; i++) {
+						arr.push(dataTable.getColumnIndex(america[i]));
+					}
+					view.hideColumns(arr);
+				} else {
+					var arr = view.getViewColumns();
+					for (let i = 0; i < america.length; i++) {
+						arr.push(dataTable.getColumnIndex(america[i]));
+					}
+					arr.sort(function(a, b) {return a - b;});
+					view.setColumns(arr);
+				}
+
+				chart.draw(view, options);
+			}
+				america = ['USD', 'ANG', 'ARS', 'AWG', 'BBD', 'BMD', 'BOB', 'BRL', 
+				'BSD', 'BZD', 'CAD', 'CLP', 'COP', 'CRC', 'CUC', 'CUP', 'DOP', 'FKP', 
+				'GTQ', 'GYD', 'HNL', 'HTG', 'JMD', 'KYD', 'MXN', 'NIO', 'PAB', 'PEN', 
+				'PYG', 'SRD', 'TTD', 'UYU', 'VES', 'XCD'];
+				asia = ['AED', 'AFN', 'AMD', 'AZN', 'BDT', 'BHD', 'BND', 'BTN', 'CNY', 
+				'EGP', 'ERN', 'GEL', 'HKD', 'IDR', 'ILS', 'INR', 'IQD', 'IRR', 'JOD', 
+				'JPY', 'KGS', 'KHR', 'KRW', 'KWD', 'KZT', 'LAK', 'LBP', 'LKR', 'MMK', 
+				'MNT', 'MOP', 'MVR', 'MYR', 'NPR', 'OMR', 'PHP', 'PKR', 'QAR', 'RUB', 
+				'SAR', 'SGD', 'SYP', 'THB', 'TJS', 'TMT', 'TWD', 'UZS', 'VND', 'YER'];
+				africa = ['AOA', 'BIF', 'BWP', 'CDF', 'CVE', 'DJF', 'DZD', 'EGP', 'ETB', 
+				'GHS', 'GNF', 'KES', 'KMF', 'LRD', 'LSL', 'LYD', 'MAD', 'MGA', 'MRU', 
+				'MUR', 'MWK', 'MZN', 'NAD', 'NGN', 'RWF', 'SCR', 'SDG', 'SHP', 'SLL', 
+				'SOS', 'SSP', 'STN', 'SZL', 'TND', 'TZS', 'UGX', 'XAF', 'XOF', 'ZAR', 'ZMW'];
+				europe = ['ALL', 'AZN', 'BAM', 'BGN', 'BYN', 'CHF', 'CZK', 'DKK', 'EUR', 
+				'FOK', 'GBP', 'GEL', 'GGP', 'GIP', 'GMD', 'HRK', 'HUF', 'IMP', 'ISK', 
+				'MDL', 'MKD', 'NOK', 'PLN', 'RON', 'RSD', 'RUB', 'SEK', 'TRY', 'UAH'];
+				oceania = ['AUD', 'FJD', 'KID', 'NZD', 'PGK', 'SBD', 'TOP', 'TVD', 'VUV', 
+				'WST', 'XPF'];
+		</script>
 	</head>
 
 	<body>
 		<!-- the div where a chart will be displayed -->
-		<div id="chart_div" style='height: 100vh; width: 100vw'>
+		<div id="chart_div" style='height: 80vh; width: 100vw'>
+		</div>
+		<div>
+			<input type="checkbox" id="northAmerica" nome="northAmerica" onchange="NorthAmericaCheckbox(this)">
 		</div>
 	</body>
 </html>
