@@ -40,5 +40,31 @@ def convert_to_DataTable(period):
 
     return new_format
 
+def countries():
+    contries = {
+        "america" = ['USD', 'ANG', 'ARS', 'AWG', 'BBD', 'BMD', 'BOB', 'BRL', 
+				'BSD', 'BZD', 'CAD', 'CLP', 'COP', 'CRC', 'CUC', 'CUP', 'DOP', 'FKP', 
+				'GTQ', 'GYD', 'HNL', 'HTG', 'JMD', 'KYD', 'MXN', 'NIO', 'PAB', 'PEN', 
+				'PYG', 'SRD', 'TTD', 'UYU', 'VES', 'XCD'],
+		"asia" = ['AED', 'AFN', 'AMD', 'AZN', 'BDT', 'BHD', 'BND', 'BTN', 'CNY', 
+				'EGP', 'ERN', 'GEL', 'HKD', 'IDR', 'ILS', 'INR', 'IQD', 'IRR', 'JOD', 
+				'JPY', 'KGS', 'KHR', 'KRW', 'KWD', 'KZT', 'LAK', 'LBP', 'LKR', 'MMK', 
+				'MNT', 'MOP', 'MVR', 'MYR', 'NPR', 'OMR', 'PHP', 'PKR', 'QAR', 'RUB', 
+				'SAR', 'SGD', 'SYP', 'THB', 'TJS', 'TMT', 'TWD', 'UZS', 'VND', 'YER'],
+		"africa" = ['AOA', 'BIF', 'BWP', 'CDF', 'CVE', 'DJF', 'DZD', 'EGP', 'ETB', 
+				'GHS', 'GNF', 'KES', 'KMF', 'LRD', 'LSL', 'LYD', 'MAD', 'MGA', 'MRU', 
+				'MUR', 'MWK', 'MZN', 'NAD', 'NGN', 'RWF', 'SCR', 'SDG', 'SHP', 'SLL', 
+				'SOS', 'SSP', 'STN', 'SZL', 'TND', 'TZS', 'UGX', 'XAF', 'XOF', 'ZAR', 'ZMW'],
+		"europe" = ['ALL', 'AZN', 'BAM', 'BGN', 'BYN', 'CHF', 'CZK', 'DKK', 'EUR', 
+				'FOK', 'GBP', 'GEL', 'GGP', 'GIP', 'GMD', 'HRK', 'HUF', 'IMP', 'ISK', 
+				'MDL', 'MKD', 'NOK', 'PLN', 'RON', 'RSD', 'RUB', 'SEK', 'TRY', 'UAH'],
+		"oceania" = ['AUD', 'FJD', 'KID', 'NZD', 'PGK', 'SBD', 'TOP', 'TVD', 'VUV', 
+				'WST', 'XPF']
+    }
+
+    return countries
+
+
+
 if __name__ == "__main__":
     convert_to_DataTable()
