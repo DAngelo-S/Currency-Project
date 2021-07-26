@@ -55,7 +55,7 @@ def try_plot():
 
     size = len(data['values']['USD'])
 
-    periods = [2, 3, 7, 15, 30, 90, 180, 365, 730, 1095, 1460, 1825, 3650]
+    periods = cex.periods()
 
     for p in periods:
         if size >= p:

@@ -161,6 +161,23 @@ def dell_last_data():
 
     return data
 
+def periods(arq = 'data.json'):
+    data = read_data(arq)
+
+    size = size = len(data['values']['USD'])
+
+    tmp_period = [2, 3, 7, 15, 30, 90, 180, 365, 730, 1095, 1460, 1825, 3650]
+
+    period = []
+
+    for p in tmp_period:
+        if p <= size:
+            period.append(p)
+        else:
+            return period
+    
+    return period
+
 if __name__ == "__main__":
     print("TEST")
     #catch_exchange()
@@ -171,6 +188,7 @@ if __name__ == "__main__":
     #print(verify_if_it_s_same_countries(["USD", "BRL", "BIRL"], ["BRL", "ASL", "ABA", "USD", "DIN"]))
     #updated()
     #insert_data()
+    #print(periods())
 
     # ---------------------	ATTENTION !!!!! -----------------
     # Removing the comment from the next line will erase perma-
