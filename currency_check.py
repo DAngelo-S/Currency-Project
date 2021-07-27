@@ -74,6 +74,7 @@ def run():
             os.system('git add *.png')
             os.system('git commit -m "updated charts"')
             os.system('git push')
+            os.system('cp data.json ../NEVER_DELETE/backup_currency_project_data.json')
         else:
             print(f"Dormindo desde: {datetime.now()}")
             sleep(1*60*60)
