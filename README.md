@@ -4,6 +4,11 @@ A repository to follow the current value of different currencies around the glob
 
 The purpouse of this repository it's for study >>ONLY<<.
 
+## Functionality
+
+`source venv/bin/activate`
+pip3 install -r requeriments
+
 ## 2 days
 
 <img src=balance_2.png>
