@@ -19,5 +19,4 @@ def chart_tutorial():
     return render_template('chart_tutorial.html', tempdata=tempdata)
 
 if __name__=='__main__':
-    app.run(host='linux.ime.usp.br/~deborass', port=8888)
-    #app.run(debug=True)
+    app.run(debug=True)
