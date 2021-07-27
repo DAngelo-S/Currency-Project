@@ -35,6 +35,23 @@ def catch_exchange():
             print(erro.writeError("UnknownError", "catch_exchange", "catch_exchange", "", ex))
             exit(0)
 
+def first_data():
+    old = catch_exchange()
+    data = {}
+    time_unix, currency = old['time_last_update_unix'], old['rates']
+    data['timeline'] = []
+    data['timeline'].append(time_unix-24*60*60)
+    data['values'] = {}
+
+    for country in list(currency.keys()):
+        data["values"][country] = []
+        data['values'][country].append(round(currency['USD']/currency[country], 3))
+    
+    
+    with open('data.json', 'w') as writer:
+        json.dump(data, writer)
+
+    print(data)
 
 def read_data(arq = 'data.json'):
     try:
@@ -182,6 +199,7 @@ if __name__ == "__main__":
     print("TEST")
     #catch_exchange()
     #print(read_data())
+    #first_data()
     #print(verify_if_it_s_same_countries(["USD", "BRL"], ["BRL", "ASL"])) False
     #print(verify_if_it_s_same_countries(["USD", "BRL"], ["BRL", "USD"])) True
     #print(verify_if_it_s_same_countries(["USD", "BRL"], ["BRL", "ASL", "USD"])) True
