@@ -88,7 +88,8 @@
 
 			function Unspotlight() {
 				for (var i in options['series']) {
-					options['series'][i]['lineWidth'] = 2;
+					if (i != 0)
+						options['series'][i]['lineWidth'] = 2;
 				}
 				chart.draw(view, options);
 			}

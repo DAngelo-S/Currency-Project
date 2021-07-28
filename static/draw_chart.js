@@ -51,7 +51,13 @@ function Series() {
             s[i-1] = { 'color': 'pink'};
         else if (africa.includes(country))
             s[i-1] = { 'color': 'yellow'};
-        else
+        else if (country == '0') {
+            s[i-1] = { 
+                'color': 'grey',
+                'enableInteractivity': false,
+                'lineWidth': 0.1
+            };
+        } else
             s[i-1] = { 'color': 'black'};
     }
 

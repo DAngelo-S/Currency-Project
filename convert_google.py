@@ -15,6 +15,7 @@ def convert_to_DataTable(period):
     new_format['cols'].append({'id': 'tl', 'label': 'Timeline', 'type': 'date'})
 
     del data['values']['XDR']
+    data['values']['0'] = [1] * len(data['values']['USD'])
     countries = list(data['values'].keys())
     countries.sort()
 
