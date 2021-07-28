@@ -273,13 +273,11 @@
 
 	<body onload="loadAll()" onresize="reload_chart()">
 		<!-- the div where a chart will be displayed -->
-		<div id='box'>
-			
-			<div id="chartDiv"> </div>
+		<div id="chartDiv"> </div>
 		
-			<div id='chartOptions'>
+		<div id='chartOptions'>
 		
-				<select id='period' onchange="UpdateDataTable(this.value)"> </select>
+			<select id='period' onchange="UpdateDataTable(this.value)"> </select>
 		
 				<!--
 				<div id="Clean">
@@ -287,21 +285,20 @@
 				</div>
 				-->
 			
-				<div id='America'><input type="checkbox" id="america" nome="america" checked="true" onchange="ContinentCheckbox(this)"> America <br></div>
-				<div id='americaCountries' class='continent'></div>
+			<div id='America'><input type="checkbox" id="america" nome="america" checked="true" onchange="ContinentCheckbox(this)"> America <br></div>
+			<div id='americaCountries' class='continent'></div>
 			
-				<div id='Europe'><input type="checkbox" id="europe" nome="europe" checked="true" onchange="ContinentCheckbox(this)"> Europe <br></div>
-				<div id='europeCountries' class='continent'></div>
+			<div id='Europe'><input type="checkbox" id="europe" nome="europe" checked="true" onchange="ContinentCheckbox(this)"> Europe <br></div>
+			<div id='europeCountries' class='continent'></div>
 			
-				<div id='Asia'><input type="checkbox" id="asia" nome="asia" checked="true" onchange="ContinentCheckbox(this)"> Asia <br></div>
-				<div id='asiaCountries' class='continent'></div>
+			<div id='Asia'><input type="checkbox" id="asia" nome="asia" checked="true" onchange="ContinentCheckbox(this)"> Asia <br></div>
+			<div id='asiaCountries' class='continent'></div>
 			
-				<div id='Africa'><input type="checkbox" id="africa" nome="africa" checked="true" onchange="ContinentCheckbox(this)"> Africa <br></div>
-				<div id='africaCountries' class='continent'></div>
+			<div id='Africa'><input type="checkbox" id="africa" nome="africa" checked="true" onchange="ContinentCheckbox(this)"> Africa <br></div>
+			<div id='africaCountries' class='continent'></div>
 			
-				<div id='Oceania'><input type="checkbox" id="oceania" nome="oceania" checked="true" onchange="ContinentCheckbox(this, this.id)"> Oceania <br></div>
-				<div id='oceaniaCountries' class='continent'></div>
-		</div>
+			<div id='Oceania'><input type="checkbox" id="oceania" nome="oceania" checked="true" onchange="ContinentCheckbox(this, this.id)"> Oceania <br></div>
+			<div id='oceaniaCountries' class='continent'></div>
 		</div>
 	</body>
 </html>
