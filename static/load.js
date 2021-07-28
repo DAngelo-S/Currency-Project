@@ -31,10 +31,6 @@ function load_options() {
     }
 }
 
-function reload_chart() {
-    chart.draw(view, options);
-}
-
 function loadAll() {
     load_checkboxes()
     load_options()

@@ -63,3 +63,20 @@ function Series() {
 
     return s;
 }
+
+function reload_chart(opt) {
+    if (opt == 's')
+        options['series'] = Series()
+
+    if (!isNaN(opt)) {
+        var arr = chart.getSelection()
+        for(let i = 0; i < arr.length; i++)
+            arr[i].row = arr[i].row + opt
+        arr = arr.filter(function(value) {return value.row < selected && value.row >= 0})
+    }
+    
+    chart.draw(view, options)
+    
+    if (!isNaN(opt))
+        chart.setSelection(arr)
+}

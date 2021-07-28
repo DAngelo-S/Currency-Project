@@ -8,7 +8,8 @@
 		<script>
 
 			tdata = JSON.parse({{tempdata|tojson|safe}});
-			data = tdata.period[Object.keys(tdata.period)[Object.keys(tdata.period).length - 1]];
+			let selected = Object.keys(tdata.period)[Object.keys(tdata.period).length - 1]
+			data = tdata.period[selected];
 			period = tdata.period;
 
 			america = tdata.continent['america'];
@@ -83,7 +84,7 @@
 						break;
 					}
 				}
-				chart.draw(view, options);
+				reload_chart()
 			}
 
 			function Unspotlight() {
@@ -91,7 +92,7 @@
 					if (i != 0)
 						options['series'][i]['lineWidth'] = 2;
 				}
-				chart.draw(view, options);
+				reload_chart()
 			}
 
 			function UpdateDataTable(value) {
@@ -100,7 +101,9 @@
 				view = new google.visualization.DataView(dataTable);
 				view.setColumns(arr);
 				options.hAxis.ticks = dataTable.getDistinctValues(0);
-				chart.draw(view, options);
+				tmp = value - selected
+				selected = value
+				reload_chart(tmp)
 			}
 
 		</script>

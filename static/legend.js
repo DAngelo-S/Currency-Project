@@ -57,8 +57,7 @@ function ContinentCheckbox(element) {
         console.log(arr)
         view.hideColumns(arr)
     }
-    options['series'] = Series()
-    chart.draw(view, options)
+    reload_chart('s')
 }
 
 // country
@@ -91,8 +90,7 @@ function ShowOrHide(element, c=null) {
         view.hideColumns(arr);
     }
 
-    options['series'] = Series();
-    chart.draw(view, options);
+    reload_chart('s')
 
     if(element[0].checked) {
         if (c != "america" && america.includes(element[0].name)) {
