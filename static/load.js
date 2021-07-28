@@ -31,7 +31,7 @@ function load_options() {
     }
 }
 
-function resize_chart() {
+function reload_chart() {
     chart.draw(view, options);
 }
 
