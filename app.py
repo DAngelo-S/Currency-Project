@@ -16,7 +16,7 @@ def chart_tutorial():
 
     tempdata = json.dumps({'period':period, 'continent':cg.continents()})
     
-    return render_template('chart_tutorial.html', tempdata=tempdata)
+    return render_template('chart.html', tempdata=tempdata)
 
 if __name__=='__main__':
     app.run(debug=True)
