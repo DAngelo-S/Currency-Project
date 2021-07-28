@@ -13,6 +13,11 @@ function drawChart(){
 	view = new google.visualization.DataView(dataTable);
 	
 	options['series'] = Series();
+    options['selectionMode'] = 'multiple';
+    options['tooltip'] = {
+        'isHtml': true,
+        trigger: 'both'
+    }
 
 	chart = new google.visualization.LineChart(document.getElementById(containerId));
 
