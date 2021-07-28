@@ -7,7 +7,7 @@
 		<script>
 
 			tdata = JSON.parse({{tempdata|tojson|safe}});
-			data = tdata.period[15];
+			data = tdata.period[Object.keys(tdata.period)[Object.keys(tdata.period).length - 1]];
 			period = tdata.period;
 
 			america = tdata.continent['america'];
