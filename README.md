@@ -4,63 +4,35 @@ A repository to follow the current value of different currencies around the glob
 
 The purpouse of this repository it's for study >>ONLY<<.
 
-## Functionality
+## How to locally run?
 
 `source venv/bin/activate`
 pip3 install -r requeriments
 
-Cloud:
-Installing Homebrew: https://www.edivaldobrito.com.br/como-instalar-o-homebrew-no-ubuntu-20-04-debian-10-e-derivados/  
-Installing cloud: https://github.com/cloudfoundry/cli/wiki/V7-CLI-Installation-Guide
+The function `catch_exchange.run()` must run once a day. You can do this by nonstop running `currency_check.py` in your machine or doing a task on your server to run this script preferrably at 00:10 am every day:
 
-## 2 days
+`
+from time import sleep
+from datetime import datetime
+import sys 
 
-<img src=balance_2.png>
+sys.path.append('./Currency-Project')
 
-## 3 days
+from catch_exchange import updated
 
-<img src=balance_3.png>
+while not updated():
+    sleep(10*60)
+print("UPDATED!")
+print(f"date: {datetime.now()}")
+`
 
-## 7 days
+To access the site, run `python3 app.py` and access in your browser [localhost:5000](http://localhost:5000/)
 
-<img src=balance_7.png>
+## Next Steps
 
-## 15 days
-
-<img src=balance_15.png>
-
-## 1 month
-
-<img src=balance_30.png>
-
-## 3 months
-
-<img src=balance_90.png>
-
-## 6 months
-
-<img src=balance_180.png>
-
-## 1 year
-
-<img src=balance_365.png>
-
-## 2 years
-
-<img src=balance_730.png>
-
-## 3 years
-
-<img src=balance_1095.png>
-
-## 4 years
-
-<img src=balance_1460.png>
-
-## 5 years
-
-<img src=balance_1825.png>
-
-## 10 years
-
-<img src=balance_3650.png>
+- Turn it responsive
+- Turn it beautifull
+- Organize the js fiels
+- Insert login and / use cookies to keep favorite countries (?)
+- Insert multilanguage (?)
+- Try to catch the localization of the user and them change the "first page"
