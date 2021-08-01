@@ -9,6 +9,10 @@ The purpouse of this repository it's for study >>ONLY<<.
 `source venv/bin/activate`
 pip3 install -r requeriments
 
+Cloud:
+Installing Homebrew: https://www.edivaldobrito.com.br/como-instalar-o-homebrew-no-ubuntu-20-04-debian-10-e-derivados/  
+Installing cloud: https://github.com/cloudfoundry/cli/wiki/V7-CLI-Installation-Guide
+
 ## 2 days
 
 <img src=balance_2.png>
