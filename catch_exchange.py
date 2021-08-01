@@ -57,6 +57,7 @@ def read_data(arq = 'data.json'):
     try:
         f = open(arq)
     except FileNotFoundError as ex:
+        arq = os.getcwd() + "/" + arq
         print(erro.writeError("FileNotFoundError", "read_data",  "catch_exchange", f"Read {arq}", "File not found"))
         exit(0)
     except BaseException as ex:
