@@ -2,8 +2,8 @@
 
 from datetime import datetime
 from time import sleep
-import matplotlib.pyplot as plt
-import os
+#import matplotlib.pyplot as plt
+#import os
 import catch_exchange as cex
 
 # The following 2 functions aren't tested because there aren't
@@ -70,11 +70,11 @@ def run():
     while True:
         if cex.updated():
             print("UPDATED!")
-            try_plot()
-            os.system('git add *.png')
-            os.system('git commit -m "updated charts"')
-            os.system('git push')
-            os.system('cp data.json ../NEVER_DELETE/backup_currency_project_data.json')
+            #try_plot()
+            #os.system('git add *.png')
+            #os.system('git commit -m "updated charts"')
+            #os.system('git push')
+            #os.system('cp data.json ../NEVER_DELETE/backup_currency_project_data.json')
         else:
             print(f"Dormindo desde: {datetime.now()}")
             sleep(1*60*60)
